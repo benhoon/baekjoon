@@ -1,23 +1,40 @@
-N = int(input())
-line = list(map(int, input().split()))
-space = []
+from collections import deque
+import sys
 
-for i in range(N):
-  check = sorted(space)
-  if i+1 in line:
-    ans = 1
-    a = line.index(i+1)
-    for j in range(a):
-      space.insert(0,line[0])
-      line.pop(0)
-    line.pop(0)
-  elif space == check:
-    ans = 1
-    break
-  else:
-    ans = 0
-    break
-if ans == 1:
-  print("Nice")
-else:
-  print("Sad")
+n = int(input())
+dec = deque([])
+for i in range(n):
+    ord = sys.stdin.readline().split()
+    if ord[0] == '1':
+        dec.appendleft(ord[1])
+    elif ord[0] == '2':
+        dec.append(ord[1])
+    elif ord[0] == '3':
+        if dec:
+            print(dec[0])
+            dec.popleft()
+        else:
+            print("-1")
+    elif ord[0] == '4':
+        if dec:
+            print(dec[-1])
+            dec.pop()
+        else:
+            print("-1")
+    elif ord[0] == '5':
+        print(len(dec))
+    elif ord[0] == '6':
+        if dec:
+            print("0")
+        else:
+            print("1")
+    elif ord[0] == '7':
+        if dec:
+            print(dec[0])
+        else:
+            print("-1")
+    elif ord[0] == '8':
+        if dec:
+            print(dec[-1])
+        else:
+            print("-1")
